@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="view_project_qr_wizard_form" model="ir.ui.view">
+    <field name="name">project.qr.wizard.form</field>
+    <field name="model">project.qr.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Project QR Code">
+            <sheet>
+                <div style="text-align: center; padding: 20px;">
+                    <field name="qr_image" widget="image"
+                           style="width: 300px; height: 300px; display: inline-block; border: 1px solid #ccc; border-radius: 8px; padding: 10px;"/>
+                    <h3 style="margin-top: 10px;">Scan this QR Code</h3>
+                </div>
+
+
+                <field name="value" />
+            </sheet>
+            <footer>
+                <button string="Close" class="btn-primary" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+
+
+
+<record id="project_show_qr_code" model="ir.ui.view">
+    <field name="name">project.show.qr.code</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="arch" type="xml">
+        <xpath expr="//header" position="inside">
+            <button type="object" string="Take Attendance" name="generate_and_show_qr" class="btn btn-success" />
+        </xpath>
+    </field>
+</record>
+
+</odoo>
