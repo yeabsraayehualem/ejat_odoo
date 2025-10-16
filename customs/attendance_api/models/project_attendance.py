@@ -9,7 +9,19 @@ class ProjectProject(models.Model):
     _inherit = "project.project"
 
     qr_code = fields.Binary("QR Code")
-
+    assignee_ids = fields.Many2many('hr.employee', string='Assignees',compute='_compute_assignees', store=True)
+    department_ids = fields.Many2many('hr.department', string='Departments')
+    
+    
+    @api.depends('department_ids')
+    def _compute_assignees(self):
+        for project in self:
+            if project.department_ids:
+                employees = self.env['hr.employee'].search([('department_id', 'in', project.department_ids.ids)])
+                project.assignee_ids = employees
+            else:
+                project.assignee_ids = False
+    
     def generate_and_show_qr(self):
         for rec in self:
             # Static key (must be the same in Flutter)

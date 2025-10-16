@@ -33,6 +33,12 @@
         <xpath expr="//header" position="inside">
             <button type="object" string="Take Attendance" name="generate_and_show_qr" class="btn btn-success" />
         </xpath>
+
+        <xpath expr="//field[@name='tag_ids']" position="before">
+            <field name="department_ids" widget="many2many_tags" options="{'no_create': True}" placeholder="Select Departments..."/>
+            <field name="assignee_ids" widget="many2many_avatar_user" options="{'no_create': True}" placeholder="Assign Employees..." readonly="0"/>
+            
+        </xpath>
     </field>
 </record>
 

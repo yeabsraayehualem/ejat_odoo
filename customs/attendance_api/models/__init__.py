@@ -1,1 +1,1 @@
-from . import project_attendance
+from . import project_attendance,hr_attendance
