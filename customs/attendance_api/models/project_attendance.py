@@ -31,7 +31,7 @@ class ProjectProject(models.Model):
             # Compose the string to encrypt
             base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
             date = fields.Date.today()
-            main_string = f"{base_url}/{rec.id}/{date}"
+            main_string = f"{base_url}/project_id={rec.id}/date={date}"
             _lg.info(f"********* {main_string}")
             # Encrypt it
             encrypted_string = cipher.encrypt(main_string.encode()).decode()
