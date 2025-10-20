@@ -9,9 +9,11 @@ class HrAttendance(models.Model):
 
     
     @api.model
-    def close_attendance(self, employee_id, project_id=None):
-        attendance = self.search([('employee_id', '=', employee_id), ('check_out', '=', False)], limit=1)
+    def close_attendance(self, project_id=None):
+        attendance = self.search([ ('check_out', '=', False)])
         if attendance:
-            attendance.write({'check_out': attendance.check_in + timedelta(hours=2) })
+            for a in attendance:
+               
+                a.write({'check_out': attendance.check_in + timedelta(hours=2) })
           
         return attendance

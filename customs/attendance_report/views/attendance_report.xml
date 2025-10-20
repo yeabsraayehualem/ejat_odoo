@@ -1,0 +1,101 @@
+<odoo>
+    <!-- ========================================================= -->
+    <!-- Main Attendance Report Views                             -->
+    <!-- ========================================================= -->
+
+    <!-- Form View -->
+    <record id="view_attendance_report_form" model="ir.ui.view">
+        <field name="name">attendance.report.form</field>
+        <field name="model">attendance.report</field>
+        <field name="arch" type="xml">
+            <form string="Attendance Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="project_id"/>
+                        </group>
+                        <group>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Attendance Lines">
+                            <field name="line_ids">
+                                <list create="false" edit="false" delete="false">
+                                    <field name="check_in"/>
+                                    <field name="check_out"/>
+                                    <field name="duration"/>
+                                    <field name="is_present"/>
+                                    <field name="is_on_leave"/>
+                                    <field name="is_absent"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- list/List View -->
+    <record id="view_attendance_report_list" model="ir.ui.view">
+        <field name="name">attendance.report.list</field>
+        <field name="model">attendance.report</field>
+        <field name="arch" type="xml">
+            <list string="Attendance Reports">
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="from_date"/>
+                <field name="to_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="view_attendance_report_pivot" model="ir.ui.view">
+        <field name="name">attendance.report.pivot</field>
+        <field name="model">attendance.report.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Attendance Summary">
+                <field name="attendance_report_id" type="row"/>
+                <field name="is_present" type="col"/>
+                <field name="is_on_leave" type="col"/>
+                <field name="duration" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View -->
+    <record id="view_attendance_report_graph" model="ir.ui.view">
+        <field name="name">attendance.report.graph</field>
+        <field name="model">attendance.report.line</field>
+        <field name="arch" type="xml">
+            <graph string="Attendance Graph" type="bar">
+                <field name="attendance_report_id" type="row"/>
+                <field name="duration" type="measure"/>
+                <field name="is_present" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_attendance_report" model="ir.actions.act_window">
+        <field name="name">Attendance Reports</field>
+        <field name="res_model">attendance.report</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first attendance report
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_attendance_report_root"
+              name="Attendance Reports"
+              parent="attendance_report_root_menu"
+              action="action_attendance_report"/>
+</odoo>
