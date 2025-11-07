@@ -12,7 +12,28 @@ class AttendanceReport(models.Model):
     from_date = fields.Date(string='From Date', required=True)
     to_date = fields.Date(string='To Date', required=True)
     line_ids = fields.One2many('attendance.report.line', 'attendance_report_id', string='Report Lines')
+    total_present_days = fields.Integer(string="Present Days", compute="_compute_summary", store=True)
+    total_absent_days = fields.Integer(string="Absent Days", compute="_compute_summary", store=True)
+    total_on_leave_days = fields.Integer(string="On Leave Days", compute="_compute_summary", store=True)
+    total_worked_hours = fields.Float(string="Total Worked Hours", compute="_compute_summary", store=True)
 
+    @api.depends('line_ids')
+    def _compute_summary(self):
+        for rec in self:
+            present = absent = on_leave = 0
+            worked_hours = 0.0
+            for line in rec.line_ids:
+                if line.is_present:
+                    present += 1
+                    worked_hours += line.duration or 0.0
+                elif line.is_on_leave:
+                    on_leave += 1
+                else:
+                    absent += 1
+            rec.total_present_days = present
+            rec.total_absent_days = absent
+            rec.total_on_leave_days = on_leave
+            rec.total_worked_hours = worked_hours
     @api.constrains('from_date', 'to_date')
     def _check_dates(self):
         for rec in self:
