@@ -27,7 +27,9 @@ class HrEmployee(models.Model):
         ])
         
         for emp in employees:
-            user = self.env['res.users'].search([('login','=',emp.mobile_phone)])
+            user = self.env['res.users'].search([('login','=',emp.mobile_phone),('employee_id','=',False)])
+            if user:
+                user.employee_id = emp.id
             if not user:
                 self.env['res.users'].create({
                     'name': emp.name,
