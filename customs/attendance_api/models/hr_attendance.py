@@ -8,6 +8,9 @@ class HrAttendance(models.Model):
     project_id = fields.Many2one('project.project', string='Project', required=True)
 
     
+    # def action_create_report(self):
+    #     # 1. get an attendance in with
+    
     @api.model
     def close_attendance(self, project_id=None):
         attendance = self.search([ ('check_out', '=', False)])
