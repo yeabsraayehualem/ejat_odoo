@@ -15,3 +15,20 @@ class LeaveAllocation(models.Model):
         for i in leaves:
             i.number_of_days = 3  # 👈 write to stored field
             _lg.info(f"Updated leave {i.id} to 3 days")
+
+
+class HrEmployee(models.Model):
+    _inherit='hr.employee'
+    
+    
+    def action_create_user(self):
+        employees = self.env['hr.employee'].search([
+            ('user_id','=',False)
+        ])
+        
+        for emp in employees:
+            self.env['res.users'].create({
+                'name': emp.name,
+                "login":emp.mobile_phone,
+                "password":"123456"
+            })
