@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Badge</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        background: #eee;
+    }
+
+    /* BADGE CONTAINER */
+    .badge-container {
+        width: 540px;            /* ID card scale */
+        height: 720px;           /* ID card scale */
+        position: relative;
+        background-image: url("idfront.png");
+        background-size: 100% 100%;   /* Fits EXACTLY into card */
+        background-repeat: no-repeat;
+        background-position: center;
+        font-family: "Noto Sans Ethiopic", Arial, sans-serif;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    /* PHOTO */
+    .photo {
+        position: absolute;
+        top: 245px;
+        left: 14px;
+        width: 110px;
+        height: 110px;
+        border-radius: 6px;
+        overflow: hidden;
+        background: white;
+    }
+
+    .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* NAME + TITLE */
+    .name-block {
+        position: absolute;
+        top: 250px;
+        left: 130px;
+        color: #7B0017;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .name-block .fullname {
+        font-size: 22px;
+        margin: 0;
+    }
+
+    .name-block .title {
+        margin-top: 5px;
+        font-size: 14px;
+    }
+
+    /* DETAILS TEXT */
+    .details {
+        position: absolute;
+        top: 390px;
+        left: 25px;
+        color: white;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    /* QR CODE */
+    .qr {
+        position: absolute;
+        top: 390px;
+        right: 20px;
+        width: 130px;
+        height: 130px;
+        background: white;
+        border-radius: 4px;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    .qr img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .qr-number {
+        position: absolute;
+        top: 523px;
+        right: 32px;
+        font-size: 15px;
+        color: white;
+    }
+
+    /* FOOTER AREA */
+    .footer {
+        position: absolute;
+        bottom: 70px;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 0 25px;
+        color: #f4ca1a;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+    }
+    .footer div {
+        text-align: center;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="badge-container">
+<div style="display: flex; padding: 20px">
+    <img src="./logo.jpeg"  style="width: 100px; height: 100px;"/>
+    <h2 style="margin-left: 20px; font-size: 20px;color: #f4ca1a;"> የኢትዮጵያዊው ጃንደረባ ትውልድ <br/> The Ethiopian Jandereba Generation </h2>
+</div>
+    <!-- PHOTO -->
+    <div class="photo">
+        <img src="member.jpg">
+    </div>
+
+    <!-- NAME -->
+    <div class="name-block">
+        <p class="fullname">ያዕቆብ አበው ገብረሚካኤል</p>
+        <p class="title">መምህር</p>
+    </div>
+
+    <!-- DETAIL TEXT -->
+    <div class="details">
+        <p>ክርስትና ስም: ኄር ግብረሚካኤል</p>
+        <p>ስልክ ቁጥር: 0902469686</p>
+        <p>ቅርንጫፍ: አዲስ አበባ</p>
+    </div>
+
+    <!-- QR CODE -->
+    <div class="qr">
+        <img src="qrcode.png">
+    </div>
+
+    <div class="qr-number">መታወቂያ ቁጥር፡ 9912</div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div>
+            የተመዘገበበት ቀን<br>
+            25/01/2016 ዓ.ም
+        </div>
+        <div>
+            የሚያልቅበት ቀን<br>
+            11/04/2019 ዓ.ም
+        </div>
+    </div>
+    <div class="footer">
+        <div style="text-align: center; color:#f4ca1a; position:absolute; margin-top: 20px;">
+            የሚከለክለኝ ምንድን ነው?
+        </div>
+      
+    </div>
+
+</div>
+
+</body>
+</html>

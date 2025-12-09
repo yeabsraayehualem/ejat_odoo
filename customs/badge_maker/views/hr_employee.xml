@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Employee Form View - Add Badge Images -->
+    <record id="view_employee_form_badge_images" model="ir.ui.view">
+        <field name="name">hr.employee.form.badge.images</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Badge Images">
+                    <group>
+                        <group>
+                        <field name="qr_code"  widget="image" />
+                            <field name="badge_front_image" widget="image" class="oe_avatar"/>
+                        </group>
+                        <group>
+                            <field name="badge_back_image" widget="image" class="oe_avatar"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
