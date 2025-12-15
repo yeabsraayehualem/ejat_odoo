@@ -1,37 +1,51 @@
 version: "3.8"
 
 services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ejat
+      POSTGRES_PASSWORD: ejat
+      POSTGRES_DB: postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5408:5432"
+    restart: always
+    networks:
+      - odoo_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ejat"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  flask_badge:
+    build: ./flask_badge
+    container_name: flask_badge
+    ports:
+      - "5001:5001"
+    networks:
+      - odoo_net
+    restart: unless-stopped
+
   web:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "23000:8069"
-    
     depends_on:
-      - postgres
-    environment:
-      - HOST=postgres
-      - USER=ejat
-      - PASSWORD=ejat
+      postgres:
+        condition: service_healthy
+      flask_badge:
+        condition: service_started
     volumes:
       - ./erpdata:/var/lib/odoo
-
+    networks:
+      - odoo_net
     restart: always
 
-  
-  postgres:
-    image: postgres:16
-    environment:
-     
-      - POSTGRES_USER=ejat
-      - POSTGRES_PASSWORD=ejat
-    volumes:
-      - ./pgdata:/var/lib/postgresql/data
-    restart: always
-    ports:
-      - "5408:5432"
-  
-volumes:
-  erpdata:
-  pgdata:
+networks:
+  odoo_net:
+    driver: bridge

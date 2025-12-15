@@ -7,19 +7,22 @@
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//notebook" position="inside">
-                <page string="Badge Images">
-                    <group>
-                        <group>
-                        <field name="qr_code"  widget="image" />
-                            <field name="badge_front_image" widget="image" class="oe_avatar"/>
-                        </group>
-                        <group>
-                            <field name="badge_back_image" widget="image" class="oe_avatar"/>
-                        </group>
-                    </group>
-                </page>
+            <xpath expr="//field[@name='name']" position="after">
+               
+                        <field name="name_of_baptism"  />
+                     
+              
             </xpath>
+
+             <xpath expr="//header" position="inside">
+            <button
+                name="action_generate_id_badge_pdf"
+                type="object"
+                string="Generate ID Badge (PDF)"
+                class="oe_highlight"
+              
+            />
+        </xpath>
         </field>
     </record>
 

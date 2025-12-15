@@ -1,0 +1,15 @@
+<odoo>
+    <template id="override_font_global" inherit_id="web.internal_layout">
+        <xpath expr="//head" position="inside">
+            <style>
+            @font-face {
+                font-family: 'AbyssinicaSIL';
+                src: url('file:///usr/share/fonts/truetype/abyssinica/AbyssinicaSIL-Regular.ttf');
+            }
+            body, html, * {
+                font-family: 'AbyssinicaSIL' !important;
+            }
+            </style>
+        </xpath>
+    </template>
+</odoo>

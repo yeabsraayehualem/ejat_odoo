@@ -6,14 +6,8 @@ from io import BytesIO
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
-    badge_front_image = fields.Binary(
-        string='Badge Front Image',
-        help='Front side of the employee badge'
-    )
-    badge_back_image = fields.Binary(
-        string='Badge Back Image',
-        help='Back side of the employee badge'
-    )
+    name_of_baptism = fields.Char(string='Name of Baptism')
+    
 
     qr_code = fields.Binary(
         string='QR Code',
@@ -41,3 +35,12 @@ class HrEmployee(models.Model):
                 record.qr_code = base64.b64encode(qr_image)
             else:
                 record.qr_code = False
+
+    def action_generate_id_badge_pdf(self):
+        """Open a URL that will generate and download the badge PDF."""
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_url',
+            'url': f'/hr/badge/pdf/{self.id}',
+            'target': 'self',
+        }

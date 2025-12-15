@@ -10,13 +10,12 @@
         "views/hr_employee.xml",
         "views/badge_report.xml",
     ],
-    "assets":{
-        "web.assets_backend": [
-            "badge_maker/static/css/badge.css",
-            "badge_maker/static/img/idfront.png",
-            "badge_maker/static/img/idback.png",
-        ],
-    },
+    # "assets":{
+    #     "web.assets_backend": [
+    #         "badge_maker/static/src/css/badge.css",
+         
+    #     ],
+    # },
     "installable":True,
     "application":True,
 }
