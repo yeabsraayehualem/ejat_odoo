@@ -38,10 +38,10 @@ class HrBadgeController(http.Controller):
             'title': emp.job_id.name or 'ጃን ኤልያስ',
             'christian_name': getattr(emp, 'name_of_baptism', ''),  # ← adjust if field name differs
             'phone': emp.work_phone or emp.mobile_phone or '0987656788',
-            'branch': company.city or 'እዲስ እበባ',
+            'branch': emp.branch or 'እዲስ እበባ',
             'id_number': emp.barcode or emp.identification_id or str(emp.id),
-            'registration_date': emp.create_date.strftime('%d/%m/%Y') if emp.create_date else '',
-            'expiry_date': (emp.create_date + timedelta(days=3*365)).strftime('%d/%m/%Y') if emp.create_date else '',
+            'registration_date': emp.issued_date.strftime('%d/%m/%Y') if emp.issued_date else '',
+            'expiry_date': emp.expiration_date.strftime('%d/%m/%Y') if emp.expiration_date else '',
             'photo_base64': photo_b64,
             'qr_base64': qr_b64,
         }
