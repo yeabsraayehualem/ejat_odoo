@@ -7,6 +7,10 @@ class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     name_of_baptism = fields.Char(string='Name of Baptism')
+    birth_place = fields.Char(string="ትውልድ")
+    branch = fields.Char(string="Branch")
+    issued_date=fields.Date(string="Issued Date",default=fields.Date.today())
+    expiration_date = fields.Date(string="Expiration Date")
     
 
     qr_code = fields.Binary(

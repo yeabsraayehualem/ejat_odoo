@@ -7,9 +7,12 @@
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='name']" position="after">
+            <xpath expr="//field[@name='work_email']" position="before">
                
                         <field name="name_of_baptism"  />
+                <field name="branch" />
+                <field name="issued_date" />
+                <field name="expiration_date" />
                      
               
             </xpath>
