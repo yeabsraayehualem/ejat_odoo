@@ -10,7 +10,9 @@
             <xpath expr="//field[@name='work_email']" position="before">
                
                         <field name="name_of_baptism"  />
-                <field name="branch" />
+                <field name="birth_place_id" />
+                <field name="birth_date" />
+                <field name="branch_id" />
                 <field name="issued_date" />
                 <field name="expiration_date" />
                      

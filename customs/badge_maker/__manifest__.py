@@ -9,6 +9,7 @@
     "data":[
         "views/hr_employee.xml",
         "views/badge_report.xml",
+        "security/ir.model.access.csv",
     ],
     # "assets":{
     #     "web.assets_backend": [

@@ -7,8 +7,11 @@ class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     name_of_baptism = fields.Char(string='Name of Baptism')
-    birth_place = fields.Char(string="ትውልድ")
+    birth_place_id = fields.Many2one('birth.place',string="ትውልድ")
+    birth_date = fields.Date(string="Birth Date")
     branch = fields.Char(string="Branch")
+    branch_id = fields.Many2one('branch.branch',string="Branch")
+
     issued_date=fields.Date(string="Issued Date",default=fields.Date.today())
     expiration_date = fields.Date(string="Expiration Date")
     
@@ -48,3 +51,16 @@ class HrEmployee(models.Model):
             'url': f'/hr/badge/pdf/{self.id}',
             'target': 'self',
         }
+
+
+class BirthPlace(models.Model):
+    _name = 'birth.place'
+    _description = 'Birth Place'
+
+    name = fields.Char(string='Birth Place')
+
+class Branch(models.Model):
+    _name = 'branch.branch'
+    _description = 'Branch'
+
+    name = fields.Char(string='Branch')
